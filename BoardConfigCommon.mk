@@ -135,6 +135,10 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 
 # Properties
+TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
+
+
+# Properties
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # SELinux
