@@ -188,7 +188,7 @@ PRODUCT_PACKAGES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    XiaomiDoze
+    XiaomiParts
 
 # DPM
 PRODUCT_PACKAGES += \
