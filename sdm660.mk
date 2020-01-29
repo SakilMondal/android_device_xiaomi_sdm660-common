@@ -300,6 +300,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.recovery.qcom.rc \
     init.target.rc \
+    init.safailnet.rc \
     ueventd.qcom.rc
 
 # IPv6
