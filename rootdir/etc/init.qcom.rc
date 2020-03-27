@@ -61,6 +61,8 @@ on init
 
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
+    # Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
 
     write /sys/class/graphics/fb0/idle_time 100
 
