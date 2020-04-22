@@ -158,6 +158,9 @@ PRODUCT_PACKAGES += \
     libdng_sdk.vendor \
     vendor.qti.hardware.camera.device@1.0
 
+# Charger
+include $(LOCAL_PATH)/rootdir/charger/charger.mk
+
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
     cneapiclient \
