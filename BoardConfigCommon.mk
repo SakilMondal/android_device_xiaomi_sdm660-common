@@ -59,7 +59,9 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
+ifeq ($(BOARD_KERNEL_COMMON),true)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm660
+endif
 TARGET_KERNEL_CLANG_COMPILE := true
 
 # QCOM hardware
@@ -114,7 +116,9 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_ENABLE_MEDIADRM_64 := true
 
 # DT2W
+ifeq ($(BOARD_TOUCHSCREEN_COMMON),true)
 TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
+endif
 
 # Enable dexpreopt to speed boot time
 ifeq ($(HOST_OS),linux)
