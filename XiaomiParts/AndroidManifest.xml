@@ -64,6 +64,16 @@
                 android:resource="@string/xiaomiparts_summary" />
         </activity-alias>
 
+        <service
+            android:name=".XiaomiPartsTileService"
+            android:icon="@drawable/ic_xiaomiparts"
+            android:label="@string/xiaomiparts"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+
         <receiver android:name=".BootCompletedReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
