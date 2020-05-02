@@ -38,8 +38,10 @@
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include "vendor_init.h"
 #include "property_service.h"
+
+namespace android {
+namespace init {
 
 using android::base::GetProperty;
 using android::init::property_set;
@@ -95,3 +97,5 @@ void vendor_load_properties()
     property_set("dalvik.vm.heapminfree", heapminfree);
     property_set("dalvik.vm.heapmaxfree", heapmaxfree);
 }
+}  // namespace init
+}  // namespace android 
