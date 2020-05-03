@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
- *               2017-2019 The LineageOS Project
+ *               2017-2020 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,22 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.doze;
+package org.aospextended.settings.xiaomiparts.doze;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.hardware.display.AmbientDisplayConfiguration;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.UserHandle;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 import androidx.preference.PreferenceManager;
+
+import android.hardware.display.AmbientDisplayConfiguration;
 
 import static android.provider.Settings.Secure.DOZE_ALWAYS_ON;
 import static android.provider.Settings.Secure.DOZE_ENABLED;
@@ -38,22 +42,22 @@ public final class DozeUtils {
 
     private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
 
-    protected static final String ALWAYS_ON_DISPLAY = "always_on_display";
+    static final String ALWAYS_ON_DISPLAY = "always_on_display";
 
-    protected static final String CATEG_PICKUP_SENSOR = "pickup_sensor";
-    protected static final String CATEG_PROX_SENSOR = "proximity_sensor";
+    static final String CATEG_PICKUP_SENSOR = "pickup_sensor";
+    static final String CATEG_PROX_SENSOR = "proximity_sensor";
 
-    protected static final String GESTURE_PICK_UP_KEY = "gesture_pick_up";
-    protected static final String GESTURE_HAND_WAVE_KEY = "gesture_hand_wave";
-    protected static final String GESTURE_POCKET_KEY = "gesture_pocket";
+    static final String GESTURE_PICK_UP_KEY = "gesture_pick_up";
+    static final String GESTURE_HAND_WAVE_KEY = "gesture_hand_wave";
+    static final String GESTURE_POCKET_KEY = "gesture_pocket";
 
-    public static void startService(Context context) {
+    private static void startService(Context context) {
         if (DEBUG) Log.d(TAG, "Starting service");
         context.startServiceAsUser(new Intent(context, DozeService.class),
                 UserHandle.CURRENT);
     }
 
-    protected static void stopService(Context context) {
+    private static void stopService(Context context) {
         if (DEBUG) Log.d(TAG, "Stopping service");
         context.stopServiceAsUser(new Intent(context, DozeService.class),
                 UserHandle.CURRENT);
@@ -67,7 +71,7 @@ public final class DozeUtils {
         }
     }
 
-    protected static boolean getProxCheckBeforePulse(Context context) {
+    static boolean getProxCheckBeforePulse(Context context) {
         try {
             Context con = context.createPackageContext("com.android.systemui", 0);
             int id = con.getResources().getIdentifier("doze_proximity_check_before_pulse",
@@ -78,8 +82,8 @@ public final class DozeUtils {
         }
     }
 
-    protected static boolean enableDoze(Context context, boolean enable) {
-        return Settings.Secure.putInt(context.getContentResolver(),
+    static void enableDoze(Context context, boolean enable) {
+        Settings.Secure.putInt(context.getContentResolver(),
                 DOZE_ENABLED, enable ? 1 : 0);
     }
 
@@ -88,18 +92,18 @@ public final class DozeUtils {
                 DOZE_ENABLED, 1) != 0;
     }
 
-    protected static void launchDozePulse(Context context) {
+    static void launchDozePulse(Context context) {
         if (DEBUG) Log.d(TAG, "Launch doze pulse");
         context.sendBroadcastAsUser(new Intent(DOZE_INTENT),
                 new UserHandle(UserHandle.USER_CURRENT));
     }
 
-    protected static boolean enableAlwaysOn(Context context, boolean enable) {
-        return Settings.Secure.putIntForUser(context.getContentResolver(),
+    static void enableAlwaysOn(Context context, boolean enable) {
+        Settings.Secure.putIntForUser(context.getContentResolver(),
                 DOZE_ALWAYS_ON, enable ? 1 : 0, UserHandle.USER_CURRENT);
     }
 
-    protected static boolean isAlwaysOnEnabled(Context context) {
+    static boolean isAlwaysOnEnabled(Context context) {
         final boolean enabledByDefault = context.getResources()
                 .getBoolean(com.android.internal.R.bool.config_dozeAlwaysOnEnabled);
 
@@ -108,33 +112,33 @@ public final class DozeUtils {
                 UserHandle.USER_CURRENT) != 0;
     }
 
-    protected static boolean alwaysOnDisplayAvailable(Context context) {
+    static boolean alwaysOnDisplayAvailable(Context context) {
         return new AmbientDisplayConfiguration(context).alwaysOnAvailable();
     }
 
-    protected static boolean isGestureEnabled(Context context, String gesture) {
+    private static boolean isGestureEnabled(Context context, String gesture) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(gesture, false);
     }
 
-    protected static boolean isPickUpEnabled(Context context) {
+    static boolean isPickUpEnabled(Context context) {
         return isGestureEnabled(context, GESTURE_PICK_UP_KEY);
     }
 
-    protected static boolean isHandwaveGestureEnabled(Context context) {
+    static boolean isHandwaveGestureEnabled(Context context) {
         return isGestureEnabled(context, GESTURE_HAND_WAVE_KEY);
     }
 
-    protected static boolean isPocketGestureEnabled(Context context) {
+    static boolean isPocketGestureEnabled(Context context) {
         return isGestureEnabled(context, GESTURE_POCKET_KEY);
     }
 
-    public static boolean sensorsEnabled(Context context) {
+    private static boolean sensorsEnabled(Context context) {
         return isPickUpEnabled(context) || isHandwaveGestureEnabled(context)
                 || isPocketGestureEnabled(context);
     }
 
-    protected static Sensor getSensor(SensorManager sm, String type) {
+    static Sensor getSensor(SensorManager sm, String type) {
         for (Sensor sensor : sm.getSensorList(Sensor.TYPE_ALL)) {
             if (type.equals(sensor.getStringType())) {
                 return sensor;

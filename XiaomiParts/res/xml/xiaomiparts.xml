@@ -16,11 +16,17 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include layout="@layout/switch_bar" />
+    <PreferenceCategory
+        android:title="@string/ambient_display_title">
 
-</LinearLayout>
+        <PreferenceScreen
+            android:key="doze"
+            android:icon="@drawable/ic_doze"
+            android:fragment="org.aospextended.settings.xiaomiparts.doze.DozeSettingsActivity"
+            android:summary="@string/ambient_display_gestures_summary"
+            android:title="@string/ambient_display_gestures_title" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
