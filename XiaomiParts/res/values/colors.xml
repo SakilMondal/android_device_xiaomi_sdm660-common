@@ -16,11 +16,10 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<resources>
+    <color name="switchbar_background_color">@*android:color/material_grey_600</color>
+    <color name="switchbar_switch_track_tint">#BFFFFFFF</color>
+    <color name="switchbar_switch_thumb_tint">@android:color/white</color>
 
-    <include layout="@layout/switch_bar" />
-
-</LinearLayout>
+    <color name="homepage_xiaomiparts_background">#FF6700</color>
+</resources>

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
- *               2017-2018 The LineageOS Project
+ *               2017-2020 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.doze;
+package org.aospextended.settings.xiaomiparts.doze;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -27,7 +27,6 @@ import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class TiltSensor implements SensorEventListener {
 
@@ -38,10 +37,10 @@ public class TiltSensor implements SensorEventListener {
 
     private static final int MIN_PULSE_INTERVAL_MS = 2500;
 
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
-    private Context mContext;
-    private ExecutorService mExecutorService;
+    private final SensorManager mSensorManager;
+    private final Sensor mSensor;
+    private final Context mContext;
+    private final ExecutorService mExecutorService;
 
     private long mEntryTimestamp;
 
@@ -52,8 +51,8 @@ public class TiltSensor implements SensorEventListener {
         mExecutorService = Executors.newSingleThreadExecutor();
     }
 
-    private Future<?> submit(Runnable runnable) {
-        return mExecutorService.submit(runnable);
+    private void submit(Runnable runnable) {
+        mExecutorService.submit(runnable);
     }
 
     @Override
