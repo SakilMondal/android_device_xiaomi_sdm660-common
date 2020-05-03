@@ -29,6 +29,7 @@ import androidx.preference.SwitchPreference;
 import androidx.preference.TwoStatePreference;
 
 import org.aospextended.settings.xiaomiparts.doze.DozeSettingsActivity;
+import org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreference;
 
 public class XiaomiParts extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -45,6 +46,9 @@ public class XiaomiParts extends PreferenceFragment implements
                 return true;
             }
         });
+
+        VibratorStrengthPreference mVibratorStrength = findPreference("vib_strength");
+        mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
     }
 
     @Override

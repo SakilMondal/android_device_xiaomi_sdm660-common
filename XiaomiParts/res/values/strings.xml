@@ -80,4 +80,6 @@
     <!-- Device specific settings -->
     <string name="device_settings_app_name">Advanced settings</string>
 
+    <!-- Vibration Slider -->
+    <string name="vibrator_intensity_control">Vibration control</string>
 </resources>
