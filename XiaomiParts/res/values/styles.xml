@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2015-2016 The CyanogenMod Project
-                   2017 The LineageOS Project
+     Copyright (C) 2015 The CyanogenMod Project
+               (C) 2017-2020 The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,10 +12,11 @@
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <style name="Theme.Main" parent="@android:style/Theme.DeviceDefault.Settings">
         <item name="dialogPreferenceStyle">@style/Theme.Main.DialogPreferenceStyle</item>
         <item name="preferenceCategoryStyle">@style/Theme.Main.PreferenceCategoryStyle</item>
@@ -45,7 +46,10 @@
         <item name="android:layout">@layout/preference_material_settings</item>
     </style>
 
-    <style name="Theme.Main.PreferenceTheme">
+    <style name="Theme.Main.PreferenceTheme" parent="@style/PreferenceThemeOverlay.SettingsBase">
+        <item name="preferenceCategoryTitleTextAppearance">
+            @style/Theme.Main.TextAppearance.CategoryTitle
+        </item>
     </style>
 
     <style name="Theme.Main.SwitchPreferenceStyle" parent="@style/Theme.Main.PreferenceStyle">
@@ -58,5 +62,13 @@
     <style name="Theme.Main.SwitchBar.Switch">
         <item name="android:trackTint">@color/switchbar_switch_track_tint</item>
         <item name="android:thumbTint">@color/switchbar_switch_thumb_tint</item>
+    </style>
+
+    <style name="Theme.Main.TextAppearance.CategoryTitle"
+           parent="@*android:style/TextAppearance.DeviceDefault.Body2">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">11sp</item>
+        <!-- 0.8 Spacing, 0.8/11 = 0.072727273 -->
+        <item name="android:letterSpacing">0.072727273</item>
     </style>
 </resources>

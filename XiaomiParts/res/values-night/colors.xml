@@ -16,11 +16,8 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<resources>
+    <color name="switchbar_switch_track_tint">#82000000</color>
+    <color name="switchbar_switch_thumb_tint">@android:color/black</color>
+</resources>
 
-    <include layout="@layout/switch_bar" />
-
-</LinearLayout>
