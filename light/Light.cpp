@@ -19,25 +19,29 @@
 
 #define LOG_TAG "android.hardware.light@2.0-impl.xiaomi_sdm660"
 /* #define LOG_NDEBUG 0 */
-
 #include "Light.h"
 
 #include <android-base/file.h>
 #include <android-base/logging.h>
 #include <unistd.h>
 
+#include <iomanip>
+
 namespace {
 
-#define PPCAT_NX(A, B) A/B
-#define PPCAT(A, B) PPCAT_NX(A, B)
-#define STRINGIFY_INNER(x) #x
-#define STRINGIFY(x) STRINGIFY_INNER(x)
-
-#define LEDS(x) PPCAT(/sys/class/leds, x)
-#define LCD_ATTR(x) STRINGIFY(PPCAT(LEDS(lcd-backlight), x))
-#define WHITE_ATTR(x) STRINGIFY(PPCAT(LEDS(white), x))
-#define BUTTON_ATTR(x) STRINGIFY(PPCAT(LEDS(button-backlight), x))
-#define BUTTON1_ATTR(x) STRINGIFY(PPCAT(LEDS(button-backlight1), x))
+#define LEDS "/sys/class/leds/"
+#define LCD_LED LEDS "lcd-backlight/"
+#define WHITE LEDS "white/"
+#define BUTTON LEDS "button-backlight/"
+#define BUTTON1 LEDS "button-backlight1/"
+#define BRIGHTNESS "brightness"
+#define MAX_BRIGHTNESS "max_brightness"
+#define BLINK "blink"
+#define DUTY_PCTS "duty_pcts"
+#define PAUSE_HI "pause_hi"
+#define PAUSE_LO "pause_lo"
+#define RAMP_STEP_MS "ramp_step_ms"
+#define START_IDX "start_idx"
 
 using ::android::base::ReadFileToString;
 using ::android::base::WriteStringToFile;
@@ -46,8 +50,8 @@ using ::android::base::WriteStringToFile;
 constexpr auto kDefaultMaxLedBrightness = 255;
 constexpr auto kDefaultMaxScreenBrightness = 4095;
 
-// Each step will stay on for 50ms by default.
-constexpr auto kRampStepDuration = 50;
+// Each step will stay on for 100ms by default.
+constexpr auto kRampStepDuration = 100;
 
 // Each value represents a duty percent (0 - 100) for the led pwm.
 constexpr std::array kBrightnessRamp = {0, 12, 25, 37, 50, 72, 85, 100};
@@ -114,7 +118,7 @@ namespace implementation {
 Light::Light() {
     std::string buf;
 
-    if (ReadFileToString(LCD_ATTR(max_brightness), &buf)) {
+    if (ReadFileToString(LCD_LED MAX_BRIGHTNESS, &buf)) {
         max_screen_brightness_ = std::stoi(buf);
     } else {
         max_screen_brightness_ = kDefaultMaxScreenBrightness;
@@ -122,23 +126,23 @@ Light::Light() {
                    << kDefaultMaxLedBrightness;
     }
 
-    if (ReadFileToString(WHITE_ATTR(max_brightness), &buf)) {
+    if (ReadFileToString(WHITE MAX_BRIGHTNESS, &buf)) {
         max_led_brightness_ = std::stoi(buf);
     } else {
         max_led_brightness_ = kDefaultMaxLedBrightness;
         LOG(ERROR) << "Failed to read max LED brightness, fallback to " << kDefaultMaxLedBrightness;
     }
 
-    if (!access(BUTTON_ATTR(brightness), W_OK)) {
+    if (!access(BUTTON BRIGHTNESS, W_OK)) {
         lights_.emplace(std::make_pair(Type::BUTTONS,
                                        [this](auto&&... args) { setLightButtons(args...); }));
-        buttons_.emplace_back(BUTTON_ATTR(brightness));
+        buttons_.emplace_back(BUTTON BRIGHTNESS);
 
-        if (!access(BUTTON1_ATTR(brightness), W_OK)) {
-            buttons_.emplace_back(BUTTON1_ATTR(brightness));
+        if (!access(BUTTON1 BRIGHTNESS, W_OK)) {
+            buttons_.emplace_back(BUTTON1 BRIGHTNESS);
         }
 
-        if (ReadFileToString(BUTTON_ATTR(max_brightness), &buf)) {
+        if (ReadFileToString(BUTTON MAX_BRIGHTNESS, &buf)) {
             max_button_brightness_ = std::stoi(buf);
         } else {
             max_button_brightness_ = kDefaultMaxLedBrightness;
@@ -172,7 +176,7 @@ Return<void> Light::getSupportedTypes(getSupportedTypes_cb _hidl_cb) {
 
 void Light::setLightBacklight(Type /*type*/, const LightState& state) {
     uint32_t brightness = RgbaToBrightness(state.color, max_screen_brightness_);
-    WriteToFile(LCD_ATTR(brightness), brightness);
+    WriteToFile(LCD_LED BRIGHTNESS, brightness);
 }
 
 void Light::setLightButtons(Type /*type*/, const LightState& state) {
@@ -202,7 +206,7 @@ void Light::applyNotificationState(const LightState& state) {
     uint32_t white_brightness = RgbaToBrightness(state.color, max_led_brightness_);
 
     // Turn off the leds (initially)
-    WriteToFile(WHITE_ATTR(blink), 0);
+    WriteToFile(WHITE BLINK, 0);
 
     if (state.flashMode == Flash::TIMED && state.flashOnMs > 0 && state.flashOffMs > 0) {
         /*
@@ -221,14 +225,14 @@ void Light::applyNotificationState(const LightState& state) {
                    << " onMs=" << state.flashOnMs << " offMs=" << state.flashOffMs;
 
         // White
-        WriteToFile(WHITE_ATTR(start_idx), 0);
-        WriteToFile(WHITE_ATTR(duty_pcts), GetScaledDutyPcts(white_brightness));
-        WriteToFile(WHITE_ATTR(pause_lo), static_cast<uint32_t>(state.flashOffMs));
-        WriteToFile(WHITE_ATTR(pause_hi), static_cast<uint32_t>(pause_hi));
-        WriteToFile(WHITE_ATTR(ramp_step_ms), static_cast<uint32_t>(step_duration));
-        WriteToFile(WHITE_ATTR(blink), 1);
+        WriteToFile(WHITE START_IDX, 0);
+        WriteToFile(WHITE DUTY_PCTS, GetScaledDutyPcts(white_brightness));
+        WriteToFile(WHITE PAUSE_LO, static_cast<uint32_t>(state.flashOffMs));
+        WriteToFile(WHITE PAUSE_HI, static_cast<uint32_t>(pause_hi));
+        WriteToFile(WHITE RAMP_STEP_MS, static_cast<uint32_t>(step_duration));
+        WriteToFile(WHITE BLINK, 1);
     } else {
-        WriteToFile(WHITE_ATTR(brightness), white_brightness);
+        WriteToFile(WHITE BRIGHTNESS, white_brightness);
     }
 }
 
