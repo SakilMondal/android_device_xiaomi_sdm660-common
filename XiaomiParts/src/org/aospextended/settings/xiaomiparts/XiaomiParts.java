@@ -29,6 +29,7 @@ import androidx.preference.SwitchPreference;
 import androidx.preference.TwoStatePreference;
 
 import org.aospextended.settings.xiaomiparts.doze.DozeSettingsActivity;
+import org.aospextended.settings.xiaomiparts.kcal.KCalSettingsActivity;
 import org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreference;
 
 public class XiaomiParts extends PreferenceFragment implements
@@ -47,6 +48,16 @@ public class XiaomiParts extends PreferenceFragment implements
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getContext(), DozeSettingsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        Preference mKCal = findPreference("device_kcal");
+        mKCal.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), KCalSettingsActivity.class);
                 startActivity(intent);
                 return true;
             }
