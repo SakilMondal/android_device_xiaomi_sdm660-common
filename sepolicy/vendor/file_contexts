@@ -36,3 +36,8 @@
 
 # Thermal
 /data/vendor/thermal(/.*)?                      u:object_r:thermal_data_file:s0
+
+# XiaomiParts
+/sys/kernel/fast_charge/force_fast_charge                        u:object_r:sysfs_usb_fastcharge:s0
+/sys/devices/platform/kcal_ctrl.[0-2](/.*)?                      u:object_r:kcal_sysfs:s0
+/sys/bus/platform/drivers/kcal_ctrl/kcal_ctrl.[0-2](/.*)?        u:object_r:kcal_sysfs:s0
