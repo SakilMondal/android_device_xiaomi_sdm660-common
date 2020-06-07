@@ -20,6 +20,7 @@ package org.aospextended.settings.xiaomiparts;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.util.Log;
 
 import org.aospextended.settings.xiaomiparts.doze.DozeUtils;
@@ -35,5 +36,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         if (DEBUG) Log.d(TAG, "Received boot completed intent");
         DozeUtils.checkDozeService(context);
         VibratorStrengthPreference.restore(context);
+        FileUtils.setValue(XiaomiParts.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                XiaomiParts.PREF_USB_FASTCHARGE, 1));
     }
 }
