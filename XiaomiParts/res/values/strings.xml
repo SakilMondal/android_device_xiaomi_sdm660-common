@@ -85,4 +85,9 @@
     <string name="vib_strength_title_head">Vibration Strength</string>
     <string name="vib_strength_summary_head">Define the strength of the vibrator</string>
 
+    <!-- USB fastcharge -->
+    <string name="fastcharge_control">USB Fastcharge Control</string>
+    <string name="fastcharge_title">Enable USB Fastcharge</string>
+    <string name="fastcharge_summary">Charge upto 900mA when connected to a computer via USB 3.0 port</string>
+
 </resources>

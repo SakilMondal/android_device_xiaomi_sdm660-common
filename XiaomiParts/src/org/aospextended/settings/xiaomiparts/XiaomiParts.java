@@ -34,6 +34,11 @@ import org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreferenc
 public class XiaomiParts extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    public static final String PREF_USB_FASTCHARGE = "fastcharge";
+    public static final String USB_FASTCHARGE_PATH = "/sys/kernel/fast_charge/force_fast_charge";
+
+    private SwitchPreference mUsbFastCharger;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.xiaomiparts, rootKey);
@@ -49,11 +54,19 @@ public class XiaomiParts extends PreferenceFragment implements
 
         VibratorStrengthPreference mVibratorStrength = findPreference("vib_strength");
         mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
+
+        mUsbFastCharger = findPreference(PREF_USB_FASTCHARGE);
+        mUsbFastCharger.setEnabled(FileUtils.fileWritable(USB_FASTCHARGE_PATH));
+        mUsbFastCharger.setChecked(FileUtils.getFileValueAsBoolean(USB_FASTCHARGE_PATH, true));
+        mUsbFastCharger.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        final String key = preference.getKey();
+        if (preference == mUsbFastCharger) {
+            FileUtils.setValue(USB_FASTCHARGE_PATH, (boolean) newValue);
         return true;
+        }
+    return false;
     }
 }

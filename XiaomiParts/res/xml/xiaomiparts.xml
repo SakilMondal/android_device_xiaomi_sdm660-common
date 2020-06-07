@@ -40,4 +40,15 @@
             android:title="@string/vib_strength_title_head"
             android:summary="@string/vib_strength_summary_head" />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/fastcharge_control">
+
+        <SwitchPreference
+            android:key="fastcharge"
+            android:defaultValue="1"
+            android:icon="@drawable/ic_usb_fastcharge"
+            android:title="@string/fastcharge_title"
+            android:summary="@string/fastcharge_summary" />
+    </PreferenceCategory>
 </PreferenceScreen>
