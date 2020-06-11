@@ -3,3 +3,9 @@ type public_adsprpcd_file, file_type;
 type sysfs_fingerprint, fs_type, sysfs_type;
 type sysfs_touchpanel, fs_type, sysfs_type;
 type thermal_data_file, file_type, data_file_type;
+
+# KCAL
+type sysfs_kcal, fs_type, sysfs_type;
+
+# Vibrator
+type sysfs_vibrator, fs_type, sysfs_type;
