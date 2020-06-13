@@ -13,6 +13,9 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- FPSInfoService FPS node file path -->
+    <string name="config_fpsInfoSysNode" translatable="true"></string>
+
     <!-- LockScreenCharger current sysfs path -->
     <string name="config_currentPath">/sys/class/power_supply/battery/current_now</string>
 
