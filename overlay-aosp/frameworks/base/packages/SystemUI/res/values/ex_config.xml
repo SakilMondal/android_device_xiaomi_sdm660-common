@@ -21,4 +21,8 @@
 
     <!-- LockScreenCharger voltage sysfs path -->
     <string name="config_voltagePath">/sys/class/power_supply/battery/voltage_now</string>
+
+    <!-- Max visible notification icons -->
+    <integer name="config_maxVisibleNotificationIcons">7</integer>
+    <integer name="config_maxVisibleNotificationIconsWhenDark">8</integer>
 </resources>
