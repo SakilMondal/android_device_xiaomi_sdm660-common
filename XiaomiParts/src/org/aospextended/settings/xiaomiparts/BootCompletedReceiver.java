@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.util.Log;
 
+import org.aospextended.settings.xiaomiparts.dirac.DiracUtils;
 import org.aospextended.settings.xiaomiparts.doze.DozeUtils;
 import org.aospextended.settings.xiaomiparts.kcal.Utils;
 import org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreference;
@@ -66,5 +67,6 @@ public class BootCompletedReceiver extends BroadcastReceiver implements Utils {
 
         FileUtils.setValue(XiaomiParts.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),
                 XiaomiParts.PREF_USB_FASTCHARGE, 1));
+        new DiracUtils(context).onBootCompleted();
     }
 }

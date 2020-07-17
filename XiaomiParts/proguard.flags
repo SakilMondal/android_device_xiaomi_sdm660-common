@@ -1,3 +1,7 @@
+-keep class org.aospextended.settings.xiaomiparts.dirac.* {
+  *;
+}
+
 -keep class org.aospextended.settings.xiaomiparts.doze.* {
   *;
 }
