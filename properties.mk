@@ -153,7 +153,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.gpu_comp_tiling=1 \
     debug.sf.recomputecrop=0 \
     persist.hwc.ptor.enable=true \
-    debug.sdm.support_writeback=0
+    debug.sdm.support_writeback=0 \
+    sys.use_fifo_ui=1
 
 # SurfaceFlinger
 PRODUCT_PROPERTY_OVERRIDES += \
