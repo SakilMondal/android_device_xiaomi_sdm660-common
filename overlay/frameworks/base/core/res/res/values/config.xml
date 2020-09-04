@@ -301,4 +301,8 @@
 
     <!-- If this is true, device supports Sustained Performance Mode. -->
     <bool name="config_sustainedPerformanceModeSupported">true</bool>
+
+    <!-- Flag indicating whether we should enable the adaptive sleep.-->
+    <bool name="config_adaptive_sleep_available">true</bool>
+
 </resources>
