@@ -228,7 +228,7 @@ PRODUCT_PACKAGES += \
     qcom.fmradio \
     qcom.fmradio.xml
 
-PRODUCT_BOOT_JARS += \
+#PRODUCT_BOOT_JARS += \
     qcom.fmradio
 endif
 
