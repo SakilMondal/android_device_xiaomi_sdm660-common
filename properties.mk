@@ -124,7 +124,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.earlyGl.app.duration=21000000 \
     debug.hwui.renderer=skiavk \
     debug.sf.enable_gl_backpressure=1 \
-    debug.sf.enable_hwc_vds=1 \
     debug.sf.hw=1 \
     debug.sf.latch_unsignaled=1 \
     ro.opengles.version=196610 \
