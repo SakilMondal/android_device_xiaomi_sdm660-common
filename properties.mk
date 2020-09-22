@@ -117,6 +117,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Dex
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     pm.dexopt.ab-ota=speed-profile \
+    dalvik.vm.dex2oat64.enabled=true \
     dalvik.vm.dex2oat-filter=speed \
     dalvik.vm.image-dex2oat-filter=speed \
     ro.vendor.qti.am.reschedule_service=true \
