@@ -188,11 +188,10 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # SELinux
-#include device/qcom/sepolicy-legacy-um/sepolicy.mk
-#BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
-#BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/public
-#BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy-temp
+include device/qcom/sepolicy-legacy-um/sepolicy.mk
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/public
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private
 
 # Treble
 PRODUCT_FULL_TREBLE_OVERRIDE := true
