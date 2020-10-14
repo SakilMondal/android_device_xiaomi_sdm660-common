@@ -1,0 +1,7 @@
+[
+  {
+    "repository" : "kernel_xiaomi_sdm660",
+    "target_path": "kernel/xiaomi/sdm660",
+    "branch"     : "ten-whyred"
+  }
+]
