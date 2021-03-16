@@ -61,7 +61,7 @@
     <PreferenceCategory
         android:title="@string/fastcharge_control">
 
-        <SwitchPreference
+        <com.xiaomiparts.settings.preference.SecureSettingSwitchPreference
             android:key="fastcharge"
             android:defaultValue="0"
             android:icon="@drawable/ic_usb_fastcharge"

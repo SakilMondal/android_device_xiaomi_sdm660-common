@@ -66,18 +66,18 @@ public class XiaomiParts extends PreferenceFragment implements
         VibratorStrengthPreference mVibratorStrength = findPreference("vib_strength");
         mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
 
-        mUsbFastCharger = findPreference(PREF_USB_FASTCHARGE);
-        mUsbFastCharger.setEnabled(FileUtils.fileWritable(USB_FASTCHARGE_PATH));
-        mUsbFastCharger.setChecked(FileUtils.getFileValueAsBoolean(USB_FASTCHARGE_PATH, true));
-        mUsbFastCharger.setOnPreferenceChangeListener(this);
+        if (FileUtils.fileWritable(USB_FASTCHARGE_PATH)) {
+            mUsbFastCharger = findPreference(PREF_USB_FASTCHARGE);
+            mUsbFastCharger.setEnabled(UsbFastCharge.isSupported());
+            mUsbFastCharger.setChecked(UsbFastCharge.isCurrentlyEnabled(this.getContext()));
+            mUsbFastCharger.setOnPreferenceChangeListener(new UsbFastCharge(getContext()));
+        } else {
+            getPreferenceScreen().removePreference(findPreference(PREF_USB_FASTCHARGE));
+        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mUsbFastCharger) {
-            FileUtils.setValue(USB_FASTCHARGE_PATH, (boolean) newValue);
-        return true;
-        }
     return false;
     }
 }
