@@ -29,10 +29,6 @@
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
-    <uses-sdk
-        android:minSdkVersion="24"
-        android:targetSdkVersion="24"/>
-
     <application
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="@string/xiaomiparts"
