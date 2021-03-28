@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.preference;
+package com.xiaomiparts.settings.preference;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.doze;
+package com.xiaomiparts.settings.doze;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -27,6 +27,7 @@ import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class TiltSensor implements SensorEventListener {
 
@@ -37,10 +38,10 @@ public class TiltSensor implements SensorEventListener {
 
     private static final int MIN_PULSE_INTERVAL_MS = 2500;
 
-    private final SensorManager mSensorManager;
-    private final Sensor mSensor;
-    private final Context mContext;
-    private final ExecutorService mExecutorService;
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
+    private Context mContext;
+    private ExecutorService mExecutorService;
 
     private long mEntryTimestamp;
 
@@ -51,8 +52,8 @@ public class TiltSensor implements SensorEventListener {
         mExecutorService = Executors.newSingleThreadExecutor();
     }
 
-    private void submit(Runnable runnable) {
-        mExecutorService.submit(runnable);
+    private Future<?> submit(Runnable runnable) {
+        return mExecutorService.submit(runnable);
     }
 
     @Override

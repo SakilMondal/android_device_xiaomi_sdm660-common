@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.doze;
+package com.xiaomiparts.settings.doze;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -26,6 +26,7 @@ import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ProximitySensor implements SensorEventListener {
 
@@ -38,10 +39,10 @@ public class ProximitySensor implements SensorEventListener {
     // Minimum time until the device is considered to have been in the pocket: 2s
     private static final int POCKET_MIN_DELTA_NS = 2000 * 1000 * 1000;
 
-    private final SensorManager mSensorManager;
-    private final Sensor mSensor;
-    private final Context mContext;
-    private final ExecutorService mExecutorService;
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
+    private Context mContext;
+    private ExecutorService mExecutorService;
 
     private boolean mSawNear = false;
     private long mInPocketTime = 0;
@@ -53,8 +54,8 @@ public class ProximitySensor implements SensorEventListener {
         mExecutorService = Executors.newSingleThreadExecutor();
     }
 
-    private void submit(Runnable runnable) {
-        mExecutorService.submit(runnable);
+    private Future<?> submit(Runnable runnable) {
+        return mExecutorService.submit(runnable);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class ProximitySensor implements SensorEventListener {
         /* Empty */
     }
 
-    void enable() {
+    protected void enable() {
         if (DEBUG) Log.d(TAG, "Enabling");
         submit(() -> {
             mSensorManager.registerListener(this, mSensor,
@@ -97,7 +98,7 @@ public class ProximitySensor implements SensorEventListener {
         });
     }
 
-    void disable() {
+    protected void disable() {
         if (DEBUG) Log.d(TAG, "Disabling");
         submit(() -> {
             mSensorManager.unregisterListener(this, mSensor);

@@ -25,31 +25,10 @@
         <PreferenceScreen
             android:key="doze"
             android:icon="@drawable/ic_doze"
-            android:fragment="org.aospextended.settings.xiaomiparts.doze.DozeSettingsActivity"
+            android:fragment="com.xiaomiparts.settings.doze.DozeSettingsActivity"
             android:summary="@string/ambient_display_gestures_summary"
             android:title="@string/ambient_display_gestures_title" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/vibrator_intensity_control">
-
-        <org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreference
-	    android:key="vib_strength"
-            android:icon="@drawable/ic_vibrate"
-            android:title="@string/vib_strength_title_head"
-            android:summary="@string/vib_strength_summary_head" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/fastcharge_control">
-
-        <SwitchPreference
-            android:key="fastcharge"
-            android:defaultValue="1"
-            android:icon="@drawable/ic_usb_fastcharge"
-            android:title="@string/fastcharge_title"
-            android:summary="@string/fastcharge_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -64,8 +43,30 @@
             android:summary="@string/device_kcal_summary" >
             <intent
                 android:action="android.intent.action.MAIN"
-                android:targetClass="org.aospextended.xiaomiparts.kcal.KCalSettingsActivity"
-                android:targetPackage="org.aospextended.xiaomiparts.kcal"/>
+                android:targetClass="com.xiaomiparts.settings.kcal.KCalSettingsActivity"
+                android:targetPackage="com.xiaomiparts.settings.kcal"/>
         </Preference>
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/vibrator_intensity_control">
+
+        <com.xiaomiparts.settings.vibration.VibratorStrengthPreference
+	    android:key="vib_strength"
+            android:icon="@drawable/ic_vibrate"
+            android:title="@string/vib_strength_title_head"
+            android:summary="@string/vib_strength_summary_head" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/fastcharge_control">
+
+        <SwitchPreference
+            android:key="fastcharge"
+            android:defaultValue="0"
+            android:icon="@drawable/ic_usb_fastcharge"
+            android:title="@string/fastcharge_title"
+            android:summary="@string/fastcharge_summary" />
+    </PreferenceCategory>
+
 </PreferenceScreen>
