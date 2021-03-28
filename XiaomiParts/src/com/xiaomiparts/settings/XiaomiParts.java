@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts;
+package com.xiaomiparts.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,9 +28,9 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
 import androidx.preference.TwoStatePreference;
 
-import org.aospextended.settings.xiaomiparts.doze.DozeSettingsActivity;
-import org.aospextended.settings.xiaomiparts.kcal.KCalSettingsActivity;
-import org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreference;
+import com.xiaomiparts.settings.doze.DozeSettingsActivity;
+import com.xiaomiparts.settings.kcal.KCalSettingsActivity;
+import com.xiaomiparts.settings.vibration.VibratorStrengthPreference;
 
 public class XiaomiParts extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {

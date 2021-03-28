@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.kcal;
+package com.xiaomiparts.settings.kcal;
 
 public interface Utils {
     String PREF_ENABLED = "kcal_enabled";

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.kcal;
+package com.xiaomiparts.settings.kcal;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -24,7 +24,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import org.aospextended.settings.xiaomiparts.R;
+import com.xiaomiparts.settings.R;
 
 public class KCalSettingsActivity extends Activity implements Utils {
 

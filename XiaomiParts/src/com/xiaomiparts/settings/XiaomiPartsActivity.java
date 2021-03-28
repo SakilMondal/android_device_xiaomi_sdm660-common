@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts;
+package com.xiaomiparts.settings;
 
 import android.app.Activity;
 import android.app.Fragment;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.kcal;
+package com.xiaomiparts.settings.kcal;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -24,7 +24,7 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import org.aospextended.settings.xiaomiparts.R;
+import com.xiaomiparts.settings.R;
 
 public class PresetDialog extends DialogFragment {
     private CharSequence[] mEntries;

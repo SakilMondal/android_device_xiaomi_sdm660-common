@@ -15,13 +15,14 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.doze;
+package com.xiaomiparts.settings.doze;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
-import org.aospextended.settings.xiaomiparts.R;
+import com.xiaomiparts.settings.R;
 
 public class DozeSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
         CompoundButton.OnCheckedChangeListener {
@@ -53,11 +54,11 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
     private SwitchPreference mHandwavePreference;
     private SwitchPreference mPocketPreference;
 
-    private final Handler mHandler = new Handler();
+    private Handler mHandler = new Handler();
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.doze_panel);
+        addPreferencesFromResource(R.xml.doze_settings);
         final ActionBar actionBar = getActivity().getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -92,7 +93,6 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         mPocketPreference.setOnPreferenceChangeListener(this);
 
         // Hide proximity sensor related features if the device doesn't support them
-
         if (!DozeUtils.getProxCheckBeforePulse(getActivity())) {
             getPreferenceScreen().removePreference(proximitySensorCategory);
         }
@@ -141,7 +141,9 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         if (DozeUtils.ALWAYS_ON_DISPLAY.equals(preference.getKey())) {
             DozeUtils.enableAlwaysOn(getActivity(), (Boolean) newValue);
         }
+
         mHandler.post(() -> DozeUtils.checkDozeService(getActivity()));
+
         return true;
     }
 
@@ -173,7 +175,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
         return false;
     }
 
-    public static class HelpDialogFragment extends DialogFragment {
+    private static class HelpDialogFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity())
@@ -188,7 +190,7 @@ public class DozeSettingsFragment extends PreferenceFragment implements OnPrefer
             getActivity().getSharedPreferences("doze_settings", Activity.MODE_PRIVATE)
                     .edit()
                     .putBoolean("first_help_shown", true)
-                    .apply();
+                    .commit();
         }
     }
 

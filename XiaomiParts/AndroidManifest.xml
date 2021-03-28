@@ -17,10 +17,10 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:sharedUserId="android.uid.system"
-    package="org.aospextended.settings.xiaomiparts"
+    package="com.xiaomiparts.settings"
     android:versionCode="1"
-    android:versionName="1" >
+    android:versionName="1.0"
+    android:sharedUserId="android.uid.system">
 
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -29,10 +29,15 @@
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="24"/>
+
     <application
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="@string/xiaomiparts"
-        android:theme="@style/Theme.Main">
+        android:theme="@style/Theme.Main"
+        android:persistent="true">
 
         <activity
             android:name=".XiaomiPartsActivity"
