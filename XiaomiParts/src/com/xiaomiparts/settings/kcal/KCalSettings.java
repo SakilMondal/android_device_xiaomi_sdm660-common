@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.kcal;
+package com.xiaomiparts.settings.kcal;
 
 import android.os.Bundle;
 import android.provider.Settings;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.Preference;
 
-import org.aospextended.settings.xiaomiparts.FileUtils;
-import org.aospextended.settings.xiaomiparts.R;
-import org.aospextended.settings.xiaomiparts.preference.SecureSettingSeekBarPreference;
-import org.aospextended.settings.xiaomiparts.preference.SecureSettingSwitchPreference;
+import com.xiaomiparts.settings.FileUtils;
+import com.xiaomiparts.settings.R;
+import com.xiaomiparts.settings.preference.SecureSettingSeekBarPreference;
+import com.xiaomiparts.settings.preference.SecureSettingSwitchPreference;
 
 public class KCalSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener, Utils {

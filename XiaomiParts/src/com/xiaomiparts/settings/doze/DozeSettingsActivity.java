@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.doze;
+package com.xiaomiparts.settings.doze;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

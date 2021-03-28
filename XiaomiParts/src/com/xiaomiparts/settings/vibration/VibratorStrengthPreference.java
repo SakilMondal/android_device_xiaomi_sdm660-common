@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.vibration;
+package com.xiaomiparts.settings.vibration;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,8 +26,8 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceViewHolder;
 
-import org.aospextended.settings.xiaomiparts.R;
-import org.aospextended.settings.xiaomiparts.util.Utils;
+import com.xiaomiparts.settings.R;
+import com.xiaomiparts.settings.util.Utils;
 
 public class VibratorStrengthPreference extends Preference implements
         SeekBar.OnSeekBarChangeListener {

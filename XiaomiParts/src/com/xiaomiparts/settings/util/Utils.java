@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts.util;
+package com.xiaomiparts.settings.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;

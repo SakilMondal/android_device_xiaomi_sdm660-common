@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts;
+package com.xiaomiparts.settings;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.util.Log;
 
-import org.aospextended.settings.xiaomiparts.doze.DozeUtils;
-import org.aospextended.settings.xiaomiparts.kcal.Utils;
-import org.aospextended.settings.xiaomiparts.vibration.VibratorStrengthPreference;
+import com.xiaomiparts.settings.doze.DozeUtils;
+import com.xiaomiparts.settings.kcal.Utils;
+import com.xiaomiparts.settings.vibration.VibratorStrengthPreference;
 
 public class BootCompletedReceiver extends BroadcastReceiver implements Utils {
 
@@ -65,6 +65,6 @@ public class BootCompletedReceiver extends BroadcastReceiver implements Utils {
         }
 
         FileUtils.setValue(XiaomiParts.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),
-                XiaomiParts.PREF_USB_FASTCHARGE, 1));
+                XiaomiParts.PREF_USB_FASTCHARGE, 0));
     }
 }

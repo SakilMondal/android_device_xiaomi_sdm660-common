@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts;
+package com.xiaomiparts.settings;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.aospextended.settings.xiaomiparts;
+package com.xiaomiparts.settings;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -36,4 +36,3 @@ public class XiaomiPartsTileService extends TileService {
         }
     }
 }
-

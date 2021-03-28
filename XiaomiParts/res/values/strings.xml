@@ -17,6 +17,17 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- DO NOT TRANSLATE Empty summary for dynamic preferences -->
+    <string name="summary_empty" translatable="false"></string>
+
+    <!-- Label for feature switch [CHAR LIMIT=30] -->
+    <string name="switch_bar_on">On</string>
+
+    <!-- Label for feature switch [CHAR LIMIT=30] -->
+    <string name="switch_bar_off">Off</string>
+
+    <!-- Device specific settings -->
+    <string name="device_settings_app_name">Advanced settings</string>
 
     <!-- Dialog texts -->
     <string name="dialog_ok">OK</string>
@@ -70,15 +81,6 @@
     <!-- Help texts -->
     <string name="doze_settings_help_title">Help</string>
     <string name="doze_settings_help_text">These features use sensor events to launch a doze notification pulse. The chosen sensor is only enabled when the device receives a notification, this helps to reduce battery usage. There is also an option to enable the chosen sensor as soon as the screen turns off, this will cause higher battery usage.</string>
-
-    <!-- Label for feature switch  -->
-    <string name="switch_bar_on">On</string>
-
-    <!-- Label for feature switch -->
-    <string name="switch_bar_off">Off</string>
-
-    <!-- Device specific settings -->
-    <string name="device_settings_app_name">Advanced settings</string>
 
     <!-- Vibration Slider -->
     <string name="vibrator_intensity_control">Vibration</string>
