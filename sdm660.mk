@@ -79,6 +79,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
 
+# Adapt Launch
+PRODUCT_COPY_FILES += \
+    device/xiaomi/sdm660-common/configs/lm/AdaptLaunchFeature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/lm/AdaptLaunchFeature.xml
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@5.0-impl:32 \

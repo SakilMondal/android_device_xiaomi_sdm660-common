@@ -331,6 +331,12 @@ vendor/bin/pm-proxy|bc4e972e3fe595b973197efe5114da8ff4339a59
 vendor/bin/pm-service|b0f77edfe04a3cc6284738196c0044e676d5eeb3
 vendor/lib64/libperipheral_client.so|a0dd574c8af3135adae10ef49065fa765906db7a
 
+# Perf - from LA.UM.8.6.2.r1-08600-89xx.0
+system_ext/lib64/libadaptlaunch.so|cf784401fc827e5195d595a6d855ec89ea8c22bf
+system_ext/lib64/libappclassifier.so|d5956c2dc9344ddcca0e78d84c393320c2e0cc97
+system_ext/lib64/libgameoptfeature.so|b135489d253f0a8d7884238fe7887eb85b87745d
+system_ext/lib64/liblearningmodule.so|a9390d0ef1ec82c97a61035ec686c1d094fdca98
+
 # Postprocessing - from jasmine
 vendor/bin/hw/vendor.display.color@1.0-service|b091c0d0f898959afedf8a3f83b5e97205fdfbc8
 vendor/bin/mm-pp-dpps|87650deb0e6df4afae33020b23af0d1cf33ec51c
