@@ -19,6 +19,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <Preference
+	android:key="header"
+	android:layout="@layout/header_animation" />
+	
     <PreferenceCategory
         android:title="@string/ambient_display_title">
 
