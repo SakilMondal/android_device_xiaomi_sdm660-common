@@ -30,6 +30,7 @@ import androidx.preference.TwoStatePreference;
 
 import com.xiaomiparts.settings.doze.DozeSettingsActivity;
 import com.xiaomiparts.settings.kcal.KCalSettingsActivity;
+import com.xiaomiparts.settings.speaker.ClearSpeakerActivity;
 import com.xiaomiparts.settings.vibration.VibratorStrengthPreference;
 
 public class XiaomiParts extends PreferenceFragment implements
@@ -37,8 +38,10 @@ public class XiaomiParts extends PreferenceFragment implements
 
     public static final String PREF_USB_FASTCHARGE = "fastcharge";
     public static final String USB_FASTCHARGE_PATH = "/sys/kernel/fast_charge/force_fast_charge";
+    private static final String PREF_CLEAR_SPEAKER = "clear_speaker_settings";
 
     private SwitchPreference mUsbFastCharger;
+    private Preference mClearSpeakerPref;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -51,6 +54,13 @@ public class XiaomiParts extends PreferenceFragment implements
                 startActivity(intent);
                 return true;
             }
+        });
+
+        mClearSpeakerPref = (Preference) findPreference(PREF_CLEAR_SPEAKER);
+        mClearSpeakerPref.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), ClearSpeakerActivity.class);
+            startActivity(intent);
+            return true;
         });
 
         Preference mKCal = findPreference("device_kcal");
