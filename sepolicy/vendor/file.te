@@ -7,3 +7,4 @@ type thermal_data_file, file_type, data_file_type;
 # XiaomiParts
 type sysfs_usb_fastcharge, sysfs_type, fs_type;
 type kcal_sysfs, sysfs_type, fs_type;
+type sysfs_fps, sysfs_type, fs_type;

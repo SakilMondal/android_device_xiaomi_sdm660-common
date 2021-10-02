@@ -66,6 +66,13 @@
                 android:targetClass="com.xiaomiparts.settings.kcal.KCalSettingsActivity"
                 android:targetPackage="com.xiaomiparts.settings.kcal"/>
         </Preference>
+
+        <SwitchPreference
+            android:key="fps_info"
+            android:icon="@drawable/ic_fps_info"
+            android:title="@string/fps_info_title"
+            android:summary="@string/fps_info_summary"
+            android:persistent="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

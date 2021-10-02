@@ -20,6 +20,8 @@ package com.xiaomiparts.settings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import androidx.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -34,6 +36,9 @@ public class BootCompletedReceiver extends BroadcastReceiver implements Utils {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+
         if (DEBUG) Log.d(TAG, "Received boot completed intent");
         DozeUtils.checkDozeService(context);
         VibratorStrengthPreference.restore(context);
@@ -66,5 +71,10 @@ public class BootCompletedReceiver extends BroadcastReceiver implements Utils {
 
         FileUtils.setValue(XiaomiParts.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),
                 XiaomiParts.PREF_USB_FASTCHARGE, 0));
+
+        boolean enabled = sharedPrefs.getBoolean(XiaomiParts.PREF_KEY_FPS_INFO, false);
+        if (enabled) {
+            context.startService(new Intent(context, FPSInfoService.class));
+        }
     }
 }

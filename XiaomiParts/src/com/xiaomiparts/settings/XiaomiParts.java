@@ -18,6 +18,8 @@
 package com.xiaomiparts.settings;
 
 import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.Preference;
@@ -30,6 +32,7 @@ import androidx.preference.TwoStatePreference;
 
 import com.xiaomiparts.settings.doze.DozeSettingsActivity;
 import com.xiaomiparts.settings.kcal.KCalSettingsActivity;
+import com.xiaomiparts.settings.preference.SecureSettingSwitchPreference;
 import com.xiaomiparts.settings.speaker.ClearSpeakerActivity;
 import com.xiaomiparts.settings.vibration.VibratorStrengthPreference;
 
@@ -39,13 +42,20 @@ public class XiaomiParts extends PreferenceFragment implements
     public static final String PREF_USB_FASTCHARGE = "fastcharge";
     public static final String USB_FASTCHARGE_PATH = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String PREF_CLEAR_SPEAKER = "clear_speaker_settings";
+    public static final String PREF_KEY_FPS_INFO = "fps_info";
 
     private SwitchPreference mUsbFastCharger;
     private Preference mClearSpeakerPref;
 
+    private static Context mContext;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.xiaomiparts, rootKey);
+
+        mContext = this.getContext();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+
         Preference mDozePref = findPreference("doze");
         mDozePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -84,10 +94,29 @@ public class XiaomiParts extends PreferenceFragment implements
         } else {
             getPreferenceScreen().removePreference(findPreference(PREF_USB_FASTCHARGE));
         }
+
+        SwitchPreference fpsInfo = (SwitchPreference) findPreference(PREF_KEY_FPS_INFO);
+        fpsInfo.setChecked(prefs.getBoolean(PREF_KEY_FPS_INFO, false));
+        fpsInfo.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-    return false;
+        final String key = preference.getKey();
+        switch (key) {
+	    case PREF_KEY_FPS_INFO:
+               boolean enabled = (Boolean) newValue;
+               Intent fpsinfo = new Intent(this.getContext(), com.xiaomiparts.settings.FPSInfoService.class);
+               if (enabled) {
+                   this.getContext().startService(fpsinfo);
+               } else {
+                   this.getContext().stopService(fpsinfo);
+               }
+               break;
+
+	    default:
+                break;
+	}
+    return true;
     }
 }
