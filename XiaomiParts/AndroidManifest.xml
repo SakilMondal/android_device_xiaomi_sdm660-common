@@ -38,7 +38,7 @@
         <activity
             android:name=".XiaomiPartsActivity"
             android:label="@string/xiaomiparts"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -49,6 +49,7 @@
             android:name=".XiaomiParts"
             android:label="@string/xiaomiparts"
             android:targetActivity="XiaomiPartsActivity"
+            android:exported="true"
             android:icon="@drawable/ic_xiaomiparts">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -69,13 +70,14 @@
             android:name=".XiaomiPartsTileService"
             android:icon="@drawable/ic_xiaomiparts"
             android:label="@string/xiaomiparts"
+            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
         </service>
 
-        <receiver android:name=".BootCompletedReceiver" >
+        <receiver android:name=".BootCompletedReceiver" android:exported="true">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -84,11 +86,13 @@
 
         <service 
             android:name=".doze.DozeService"
+            android:exported="true"
             android:permission="XiaomiDozeService">
         </service>
 
         <activity
             android:name=".doze.DozeSettingsActivity"
+            android:exported="true"
             android:label="@string/ambient_display_title"
             android:theme="@style/Theme.Main">
             <intent-filter>
@@ -99,7 +103,7 @@
 
         <activity
             android:name=".kcal.KCalSettingsActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.Main"
             android:label="@string/advanced_settings_kcal">
             <intent-filter>
@@ -110,7 +114,7 @@
 
         <activity
             android:name=".speaker.ClearSpeakerActivity" 
-            android:exported="false" 
+            android:exported="true" 
             android:label="@string/clear_speaker_title">
 
             <intent-filter>
@@ -121,11 +125,12 @@
 
 		<service
             android:name="com.xiaomiparts.settings.FPSInfoService"
-            android:exported="false">
+            android:exported="true">
         </service>
 
         <service
             android:name=".FPSTileService"
+            android:exported="true"
             android:icon="@drawable/ic_fps_info"
             android:label="@string/fps_info_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
