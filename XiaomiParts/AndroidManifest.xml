@@ -49,15 +49,14 @@
             android:name=".XiaomiParts"
             android:label="@string/xiaomiparts"
             android:targetActivity="XiaomiPartsActivity"
-            android:exported="true"
-            android:icon="@drawable/ic_xiaomiparts">
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
             <meta-data
-                android:name="com.android.settings.bg.hint"
-                android:resource="@color/homepage_xiaomiparts_background" />
+                android:name="com.android.settings.icon"
+                android:resource="@drawable/ic_xiaomiparts" />
             <meta-data
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.ia.homepage" />
